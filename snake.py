@@ -13,15 +13,15 @@ def initial_map(x_axis, y_axis):
 def new_map(a, coordinates):
     """replaces specific "." positions in the map by "X" """
     draw_map = a
-    print(draw_map)
-    print(coordinates)
+    # print(draw_map)
+    # print(coordinates)
     for x, y in coordinates:
+
         print(x, y)       
         draw_map[x][y] = "X"
             
     return draw_map
 
-                    
 
 
 # def movement():
@@ -44,13 +44,7 @@ def map():
         for number in row:
             print(number, end = "")
         print()
-    # print(b)
-        
-       
-    
-    # for position in a:
-    #     new_map = a[0][0].replace(".", "x")
-    #     print(new_map)
+
 
 map()
 
