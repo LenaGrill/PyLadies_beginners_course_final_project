@@ -11,47 +11,47 @@
     #     clear_map.append(row)
     # return clear_map
 
-# def initial_map(x_axis, y_axis):
-#     """not finished yet! creates a list of lists with x_axis items and y-axis rows"""
-
-#     clear_map = str((".," * x_axis, ";") * y_axis)
-#     split_map = clear_map.split(",")
-#     print(clear_map)
-#     print(split_map)
-
+def initial_map(n_rows, n_columns):
+     """creates a list of lists with n_columns items and n_rows rows
+     """
+     clear_map = []
+     for _ in range(n_rows):
+         clear_map.append(["."] * n_columns)
+     return clear_map
 
 # initial_map(10, 10)
 
-a = [
-[".",".",".",".",".",".",".",".",".","."],
-[".",".",".",".",".",".",".",".",".","."],
-[".",".",".",".",".",".",".",".",".","."],
-[".",".",".",".",".",".",".",".",".","."],
-[".",".",".",".",".",".",".",".",".","."],
-[".",".",".",".",".",".",".",".",".","."],
-[".",".",".",".",".",".",".",".",".","."],
-[".",".",".",".",".",".",".",".",".","."],
-[".",".",".",".",".",".",".",".",".","."],
-[".",".",".",".",".",".",".",".",".","."],
-[".",".",".",".",".",".",".",".",".","."]]  
+# a = [
+# [".",".",".",".",".",".",".",".",".","."],
+# [".",".",".",".",".",".",".",".",".","."],
+# [".",".",".",".",".",".",".",".",".","."],
+# [".",".",".",".",".",".",".",".",".","."],
+# [".",".",".",".",".",".",".",".",".","."],
+# [".",".",".",".",".",".",".",".",".","."],
+# [".",".",".",".",".",".",".",".",".","."],
+# [".",".",".",".",".",".",".",".",".","."],
+# [".",".",".",".",".",".",".",".",".","."],
+# [".",".",".",".",".",".",".",".",".","."],
+# [".",".",".",".",".",".",".",".",".","."]]  
 
-def new_map(a, coordinates):
+def new_map(input_map, coordinates):
     """replaces specific "." positions in the map by "X" """
-    draw_map = a
+    draw_map = list(input_map) # I was hoping to not overwrite the initial map a by using list, but somehow, it is always overwritten
     # print(draw_map)
+    # print(a)
     # print(coordinates)
     for x, y in coordinates:
 
         # print(x, y)       
         draw_map[x][y] = "X"
-            
+       
     return draw_map, coordinates
 
 
 def movement(coordinates, direction):
 
-    i = coordinates[-1][-2]
-    j = coordinates[-1][-1]
+    i = coordinates[-1][0]
+    j = coordinates[-1][1]
     # print(i, j)
     if direction == "n":
         i -= 1
@@ -68,34 +68,43 @@ def movement(coordinates, direction):
 
     coordinates.append([i, j])
     # print(coordinates[0])
-    # coordinates.remove(coordinates[0])
+    oldest_coordinate = coordinates[0]
+    print(oldest_coordinate)
+    coordinates.remove(coordinates[0]) # first try to remove X at the end of the snake. Works for the list, not for the map.
+                                        # the initial map is overwritten, so does the X have to be overwritten again by dots?
     print("snake position: ", coordinates)
     return coordinates
 
 def map():
-    # a = initial_map(10, 10)
+    a = initial_map(10, 10)
     # print(a)
     
     # List the table clear_map:
-    # for row in a:
-    #     for number in row:
-    #         print(number, end = "")
-    #     print()
+    for row in a:
+        for number in row:
+            print(number, end = "")
+        print()
     coordinates = [[0,0],[0,1],[0,2]]
     while True:
-        draw_map, coordinates = new_map(a, coordinates)
-        # List the table new_map:
+        print(a)
+        draw_map, coordinates = new_map(list(a), coordinates) 
+        # a alone overwrites a, so I am trying to get a new list with list(a), but that doesn't work either
+        # why is a overwritten by draw_map???
         # print(draw_map)
+        print(a)
+        # List the table new_map:
         for row in draw_map:
             for number in row:
                 print(number, end = "")
             print()
 
-        direction = input("Please select a movement direction: north = n, east = e, south = s, west = w. ")
+        direction = input("Please select a movement direction: north = n, east = e, south = s, west = w. End the game = end. ")
     
         c = movement(coordinates, direction)
+        # print(a)
         if not c:
             break
+        
 
 map()
 
