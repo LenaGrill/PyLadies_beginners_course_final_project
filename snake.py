@@ -48,7 +48,7 @@ def new_map(input_map, coordinates):
     return draw_map, coordinates
 
 
-def movement(coordinates, direction):
+def movement(coordinates, direction, draw_map):
 
     i = coordinates[-1][0]
     j = coordinates[-1][1]
@@ -66,32 +66,35 @@ def movement(coordinates, direction):
         print("Thanks for playing snake! Good bye!")
         return False
 
-    coordinates.append([i, j])
-    # print(coordinates[0])
-    oldest_coordinate = coordinates[0]
-    print(oldest_coordinate)
-    coordinates.remove(coordinates[0]) # first try to remove X at the end of the snake. Works for the list, not for the map.
-                                        # the initial map is overwritten, so does the X have to be overwritten again by dots?
-    print("snake position: ", coordinates)
-    return coordinates
+    if [i, j] in coordinates:
+        print([i, j])
+        print(coordinates)
+        return coordinates
+    else:
+        coordinates.append([i, j])
+        # print(coordinates[0])
+        oldest_coordinate = coordinates[0]
+        print(oldest_coordinate)
+        draw_map[oldest_coordinate[0]][oldest_coordinate[1]] = "."
+        coordinates.remove(coordinates[0]) 
+        print("snake position: ", coordinates)
+        return coordinates
 
 def map():
     a = initial_map(10, 10)
     # print(a)
     
     # List the table clear_map:
-    for row in a:
-        for number in row:
-            print(number, end = "")
-        print()
+    # for row in a:
+    #     for number in row:
+    #         print(number, end = "")
+    #     print()
     coordinates = [[0,0],[0,1],[0,2]]
     while True:
-        print(a)
-        draw_map, coordinates = new_map(list(a), coordinates) 
-        # a alone overwrites a, so I am trying to get a new list with list(a), but that doesn't work either
-        # why is a overwritten by draw_map???
-        # print(draw_map)
-        print(a)
+        # print(a)
+        draw_map, coordinates = new_map(a, coordinates) 
+        
+        # print(a)
         # List the table new_map:
         for row in draw_map:
             for number in row:
@@ -100,7 +103,7 @@ def map():
 
         direction = input("Please select a movement direction: north = n, east = e, south = s, west = w. End the game = end. ")
     
-        c = movement(coordinates, direction)
+        c = movement(coordinates, direction, draw_map)
         # print(a)
         if not c:
             break
