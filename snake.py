@@ -48,7 +48,7 @@ def new_map(input_map, coordinates):
     return draw_map, coordinates
 
 
-def movement(coordinates, direction, draw_map):
+def movement(coordinates, direction, draw_map, n_rows, n_columns):
 
     i = coordinates[-1][0]
     j = coordinates[-1][1]
@@ -70,6 +70,14 @@ def movement(coordinates, direction, draw_map):
         print([i, j])
         print(coordinates)
         return coordinates
+    elif not 0 <= i: 
+        return coordinates
+    elif not i <= n_rows -1 :
+        return coordinates
+    elif not 0 <= j:
+        return coordinates
+    elif not j <= n_columns -1 :
+        return coordinates
     else:
         coordinates.append([i, j])
         # print(coordinates[0])
@@ -81,7 +89,9 @@ def movement(coordinates, direction, draw_map):
         return coordinates
 
 def map():
-    a = initial_map(10, 10)
+    n_rows = 10
+    n_columns = 10
+    a = initial_map(n_rows, n_columns)
     # print(a)
     
     # List the table clear_map:
@@ -103,7 +113,7 @@ def map():
 
         direction = input("Please select a movement direction: north = n, east = e, south = s, west = w. End the game = end. ")
     
-        c = movement(coordinates, direction, draw_map)
+        c = movement(coordinates, direction, draw_map, n_rows, n_columns)
         # print(a)
         if not c:
             break
