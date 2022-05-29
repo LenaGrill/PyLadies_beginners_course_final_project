@@ -66,31 +66,30 @@ def movement(coordinates, direction, draw_map, n_rows, n_columns):
         print("Thanks for playing snake! Good bye!")
         return False
 
-    if [i, j] in coordinates:
+    if [i, j] in coordinates: # snake is not allowed to move to a position that is occupied
         print([i, j])
         print(coordinates)
         return coordinates
-    elif not 0 <= i: 
+    elif not 0 <= i: # snake can't move out of map north
         return coordinates
-    elif not i <= n_rows -1 :
+    elif not i <= n_rows -1 : # snake can't move out of map south
         return coordinates
-    elif not 0 <= j:
+    elif not 0 <= j: # snake can't move out of map west
         return coordinates
-    elif not j <= n_columns -1 :
+    elif not j <= n_columns -1 : # snake can't move out of map east
         return coordinates
     else:
-        coordinates.append([i, j])
+        coordinates.append([i, j]) # one x is added on the head side of the snake list
         # print(coordinates[0])
         oldest_coordinate = coordinates[0]
         print(oldest_coordinate)
-        draw_map[oldest_coordinate[0]][oldest_coordinate[1]] = "."
-        coordinates.remove(coordinates[0]) 
+        draw_map[oldest_coordinate[0]][oldest_coordinate[1]] = "." # x is removed on the map
+        coordinates.remove(coordinates[0]) # one x is removed on the tail side of the snake list
         print("snake position: ", coordinates)
         return coordinates
 
-def map():
-    n_rows = 10
-    n_columns = 10
+def map(n_rows, n_columns):
+    
     a = initial_map(n_rows, n_columns)
     # print(a)
     
@@ -119,7 +118,7 @@ def map():
             break
         
 
-map()
+map(10, 10)
 
 
 
