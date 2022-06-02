@@ -21,21 +21,6 @@ def initial_map(n_rows, n_columns):
          clear_map.append(["."] * n_columns)
      return clear_map
 
-# initial_map(10, 10)
-
-# a = [
-# [".",".",".",".",".",".",".",".",".","."],
-# [".",".",".",".",".",".",".",".",".","."],
-# [".",".",".",".",".",".",".",".",".","."],
-# [".",".",".",".",".",".",".",".",".","."],
-# [".",".",".",".",".",".",".",".",".","."],
-# [".",".",".",".",".",".",".",".",".","."],
-# [".",".",".",".",".",".",".",".",".","."],
-# [".",".",".",".",".",".",".",".",".","."],
-# [".",".",".",".",".",".",".",".",".","."],
-# [".",".",".",".",".",".",".",".",".","."],
-# [".",".",".",".",".",".",".",".",".","."]]  
-
 def new_map(input_map, coordinates):
     """replaces specific "." positions in the map by "X" """
     draw_map = list(input_map) # I was hoping to not overwrite the initial map a by using list, but somehow, it is always overwritten
@@ -69,8 +54,8 @@ def movement(coordinates, direction, draw_map, n_rows, n_columns):
         return False
 
     if [i, j] in coordinates: # snake is not allowed to move to a position that is occupied
-        print([i, j])
-        print(coordinates)
+        # print([i, j])
+        # print(coordinates)
         return coordinates
     elif not 0 <= i: # snake can't move out of map north
         return coordinates
@@ -84,13 +69,13 @@ def movement(coordinates, direction, draw_map, n_rows, n_columns):
         coordinates.append([i, j]) # one x is added on the head side of the snake list
         # print(coordinates[0])
         oldest_coordinate = coordinates[0]
-        print(oldest_coordinate)
+        # print(oldest_coordinate)
         if draw_map[i][j] == "O":
             return coordinates
         else:
             draw_map[oldest_coordinate[0]][oldest_coordinate[1]] = "." # x is removed on the map
             coordinates.remove(coordinates[0]) # one x is removed on the tail side of the snake list
-            print("snake position: ", coordinates)
+            # print("snake position: ", coordinates)
             return coordinates
 
 def snakefood(draw_map, n_rows, n_columns):
