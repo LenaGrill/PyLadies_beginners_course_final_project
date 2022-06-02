@@ -85,18 +85,24 @@ def movement(coordinates, direction, draw_map, n_rows, n_columns):
         # print(coordinates[0])
         oldest_coordinate = coordinates[0]
         print(oldest_coordinate)
-        draw_map[oldest_coordinate[0]][oldest_coordinate[1]] = "." # x is removed on the map
-        coordinates.remove(coordinates[0]) # one x is removed on the tail side of the snake list
-        print("snake position: ", coordinates)
-        return coordinates
+        if draw_map[i][j] == "O":
+            return coordinates
+        else:
+            draw_map[oldest_coordinate[0]][oldest_coordinate[1]] = "." # x is removed on the map
+            coordinates.remove(coordinates[0]) # one x is removed on the tail side of the snake list
+            print("snake position: ", coordinates)
+            return coordinates
 
 def snakefood(draw_map, n_rows, n_columns):
     snakefood_row = randrange(0, n_rows)
     snakefood_column = randrange(0, n_columns)
     print(snakefood_row, snakefood_column)
 
-    draw_map[snakefood_row][snakefood_column] = "O"
-    return draw_map
+    if draw_map[snakefood_row][snakefood_column] == ".":
+        draw_map[snakefood_row][snakefood_column] = "O"
+        return draw_map
+    else:
+        return draw_map
 
 def map(n_rows, n_columns):
     
@@ -110,7 +116,6 @@ def map(n_rows, n_columns):
     #     print()
     coordinates = [[0,0],[0,1],[0,2]]
     
-
     while True:
         # print(a)
         draw_map, coordinates = new_map(a, coordinates) 
