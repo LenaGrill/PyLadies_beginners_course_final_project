@@ -1,3 +1,5 @@
+from random import randrange
+
 # def initial_map(x_axis, y_axis):
     # """creates a list of lists with x_axis items and y-axis rows;
     #    the method seems to be correct and the resulting list is fine, 
@@ -88,6 +90,14 @@ def movement(coordinates, direction, draw_map, n_rows, n_columns):
         print("snake position: ", coordinates)
         return coordinates
 
+def snakefood(draw_map, n_rows, n_columns):
+    snakefood_row = randrange(0, n_rows)
+    snakefood_column = randrange(0, n_columns)
+    print(snakefood_row, snakefood_column)
+
+    draw_map[snakefood_row][snakefood_column] = "O"
+    return draw_map
+
 def map(n_rows, n_columns):
     
     a = initial_map(n_rows, n_columns)
@@ -99,10 +109,13 @@ def map(n_rows, n_columns):
     #         print(number, end = "")
     #     print()
     coordinates = [[0,0],[0,1],[0,2]]
+    
+
     while True:
         # print(a)
         draw_map, coordinates = new_map(a, coordinates) 
-        
+        draw_map = snakefood(draw_map, n_rows, n_columns)
+
         # print(a)
         # List the table new_map:
         for row in draw_map:
