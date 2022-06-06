@@ -7,5 +7,5 @@ Things to improve:
 4. impossible moves could be counted (when the position is already occupied or moving out of the map) and could be limited; 
     e.g. after 5 impossible moves/wrong tries, game ends.
 6. [Currently, food is added during every loop. There is soon too much food in the map. Limit food adding to every time food is eaten.]
-    => this was changed => new food is only added, when old one is eaten. But: currently, the food adding stops after a while, because new food is only added when old food is eaten and the coordinate is not occupied. If new food coordinate is occupied, no food is present and no new food will be added. Change by using some kind of loop.
+    => this was changed => new food is only added, when old one is eaten. But: currently, the food adding stops after a while, because new food is only added when old food is eaten and the coordinate is not occupied. If new food coordinate is occupied, no food is present and no new food will be added. Change by using loop.
 
