@@ -71,6 +71,7 @@ def movement(coordinates, direction, draw_map, n_rows, n_columns):
         oldest_coordinate = coordinates[0]
         # print(oldest_coordinate)
         if draw_map[i][j] == "O":
+            draw_map = snakefood(draw_map, n_rows, n_columns) # new snakefood is only added, when old one is eaten
             return coordinates
         else:
             draw_map[oldest_coordinate[0]][oldest_coordinate[1]] = "." # x is removed on the map
@@ -99,13 +100,13 @@ def map(n_rows, n_columns):
     #     for number in row:
     #         print(number, end = "")
     #     print()
-    coordinates = [[0,0],[0,1],[0,2]]
-    
+    coordinates = [[0,0],[0,1],[0,2]] # these are the starting coordinates for the snake
+    draw_map, coordinates = new_map(a, coordinates)
+    draw_map = snakefood(draw_map, n_rows, n_columns) # fist snakefood should be already in the map, therefore new_map and snakefood have to be called before while loop
+
     while True:
         # print(a)
         draw_map, coordinates = new_map(a, coordinates) 
-        draw_map = snakefood(draw_map, n_rows, n_columns)
-
         # print(a)
         # List the table new_map:
         for row in draw_map:
