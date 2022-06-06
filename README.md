@@ -6,5 +6,6 @@ Things to improve:
 3. Game ends when there is no more possible move.
 4. impossible moves could be counted (when the position is already occupied or moving out of the map) and could be limited; 
     e.g. after 5 impossible moves/wrong tries, game ends.
-6. Currently, food is added during every loop. There is soon too much food in the map. Limit food adding to every time food is eaten.
-7. 
+6. [Currently, food is added during every loop. There is soon too much food in the map. Limit food adding to every time food is eaten.]
+    => this was changed => new food is only added, when old one is eaten. But: currently, the food adding stops after a while. Not sure why. 
+8. 
