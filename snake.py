@@ -92,7 +92,7 @@ def snakefood(draw_map, n_rows, n_columns):
 
 def map(n_rows, n_columns):
     
-    a = initial_map(n_rows, n_columns)
+    a = initial_map(n_rows, n_columns) # empty map is called
     # print(a)
     
     # List the table clear_map:
