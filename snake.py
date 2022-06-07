@@ -80,15 +80,17 @@ def movement(coordinates, direction, draw_map, n_rows, n_columns):
             return coordinates
 
 def snakefood(draw_map, n_rows, n_columns):
-    snakefood_row = randrange(0, n_rows)
-    snakefood_column = randrange(0, n_columns)
-    print(snakefood_row, snakefood_column)
+    
+    while True:
+        snakefood_row = randrange(0, n_rows)
+        snakefood_column = randrange(0, n_columns)
+        print(snakefood_row, snakefood_column)
 
-    if draw_map[snakefood_row][snakefood_column] == ".":
-        draw_map[snakefood_row][snakefood_column] = "O"
-        return draw_map
-    else:
-        return draw_map
+        if draw_map[snakefood_row][snakefood_column] == ".":
+            draw_map[snakefood_row][snakefood_column] = "O"
+            return draw_map
+        else:
+            True
 
 def map(n_rows, n_columns):
     
